@@ -9,6 +9,6 @@ class Main{
         List<Integer> list = new ArrayList<>();
         list.add(Integer.parseInt(st.nextToken()));
         System.out.println(list);
-        //test 2023-11-14_15:27
+        //test 2023-11-14_15:27(2)
     }
 }
