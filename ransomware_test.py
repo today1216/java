@@ -66,7 +66,7 @@ startPath = input()  # 암 복호화할 대상 경로(로컬)
 # startPath = "C:/Users/SPNT/Desktop/test/**"  # 암 복호화할 대상 경로(로컬)
 # startPath = "//10.100.100.125/spnt공용/test/**"  # 암 복호화할 대상 경로(네트워크)
 
-print("1: Encrypt, 2: Decrypt")
+print("1: Encrypt(암호화), 2: Decrypt(복호화)")
 a = int(input())
 
 
@@ -92,3 +92,5 @@ elif a == 2:
 
 else:
     print("잘못 입력했다")
+    
+os.system("pause")
