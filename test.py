@@ -1,11 +1,14 @@
-print("1: Encrypt, 2: Decrypt")
-a = int(input())
+a = b'a12345'
+b = b'123456'
 
-if a == 1:
-    print("Encrypt")
-    
-elif a == 2:
-    print("Decrypt")
-    
-else:
-    print("잘못 입력함")
+print(a, type(a))
+print(b, type(b))
+
+c = int.from_bytes(a, byteorder='big')
+print(c, type(c))
+
+d = input()
+print(d, type(d))
+
+e = d.encode('ascii')
+print(e, type(e))

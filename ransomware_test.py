@@ -53,15 +53,22 @@ def decrypt_file(test, in_filename, out_filename=None, chunksize=64 * 1024):
             outfile.truncate(origsize)  # 새 파일에 언패킹한 크기 만큼 잘라냄
 
 
+print("암호화 키값 16자리를 입력하시오")
+password = input()
+key = password.encode('ascii')  # AES 암호화에사용될 키값을 바이너리로 생성
+print("암호화 키값은 \"" +password+ "\" 입니다.")
 
-key = b'123456789a123456'  # AES 암호화에사용될 키값을 바이너리로 생성
-print("암호화 할 위치의 경로를 정확히 입력하시오(ex.C:/Users/abcd/Desktop/test/**)")
+
+print("암호화 할 위치의 경로를 아래와 같이 입력하시오")
+print("ex. C:/Users/abcd/Desktop/test/**")
+print("ex. //10.100.100.125/spnt공용/test/**")
 startPath = input()  # 암 복호화할 대상 경로(로컬)
 # startPath = "C:/Users/SPNT/Desktop/test/**"  # 암 복호화할 대상 경로(로컬)
 # startPath = "//10.100.100.125/spnt공용/test/**"  # 암 복호화할 대상 경로(네트워크)
 
 print("1: Encrypt, 2: Decrypt")
 a = int(input())
+
 
 if a == 1:
     # Encrypts all files recursively starting from startPath
