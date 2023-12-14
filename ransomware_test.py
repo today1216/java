@@ -53,22 +53,35 @@ def decrypt_file(test, in_filename, out_filename=None, chunksize=64 * 1024):
             outfile.truncate(origsize)  # 새 파일에 언패킹한 크기 만큼 잘라냄
 
 
-key = b'1111111111kee123'  # AES 암호화에사용될 키값을 바이너리로 생성
-startPath = "C:/Users/SPNT/Desktop/test/**"  # 암 복호화할 대상 경로
 
+key = b'123456789a123456'  # AES 암호화에사용될 키값을 바이너리로 생성
+print("암호화 할 위치의 경로를 정확히 입력하시오(ex.C:/Users/abcd/Desktop/test/**)")
+startPath = input()  # 암 복호화할 대상 경로(로컬)
+# startPath = "C:/Users/SPNT/Desktop/test/**"  # 암 복호화할 대상 경로(로컬)
+# startPath = "//10.100.100.125/spnt공용/test/**"  # 암 복호화할 대상 경로(네트워크)
 
-# Encrypts all files recursively starting from startPath
-for filename in glob.iglob(startPath, recursive=True):  # 대상 경로를 재귀적 호출 사용
-    if os.path.isfile(filename):  # 현재 파일이 파일일때
-        print('Encrypting>' + filename)  # 파일명 출력
-        encrypt_file(key, filename)  # Encrypt_file에 위에서 선언한 키값과 파일명을 인자로 호출
-        os.remove(filename)  # 현재파일을 제거 (encrypt_file 함수에서 새파일을 작성하였기에 기존파일을 제거해야함.)
+print("1: Encrypt, 2: Decrypt")
+a = int(input())
 
-# Decrypts the files
-# for filename in glob.iglob(startPath, recursive=True): # 대상 경로를 재귀적 호출
-#     if os.path.isfile(filename): # 현재파일이 파일일 때
-#         fname, ext = os.path.splitext(filename) # 파일명과 확장자를 추출
-#         if (ext == '.spnt'): # 확장자가 .enc (암호화된 파일일 때)
-#             print('Decrypting>' + filename) # 파일명 출력
-#             decrypt_file(key, filename) # 복호화 함수 실행
-#             os.remove(filename) # 암호화됐던 파일을 제거 (마찬가지로 새파일을 작성하였기에 기존 파일을 제거해야함.)
+if a == 1:
+    # Encrypts all files recursively starting from startPath
+    for filename in glob.iglob(startPath, recursive=True):  # 대상 경로를 재귀적 호출 사용
+        if os.path.isfile(filename):  # 현재 파일이 파일일때
+            print('Encrypting>' + filename)  # 파일명 출력
+            encrypt_file(key, filename)  # Encrypt_file에 위에서 선언한 키값과 파일명을 인자로 호출
+            os.remove(filename)  # 현재파일을 제거 (encrypt_file 함수에서 새파일을 작성하였기에 기존파일을 제거해야함.)
+            print("파일 암호화 완료")
+
+elif a == 2:
+    # Decrypts the files
+    for filename in glob.iglob(startPath, recursive=True): # 대상 경로를 재귀적 호출
+        if os.path.isfile(filename): # 현재파일이 파일일 때
+            fname, ext = os.path.splitext(filename) # 파일명과 확장자를 추출
+            if (ext == '.spnt'): # 확장자가 .enc (암호화된 파일일 때)
+                print('Decrypting>' + filename) # 파일명 출력
+                decrypt_file(key, filename) # 복호화 함수 실행
+                os.remove(filename) # 암호화됐던 파일을 제거 (마찬가지로 새파일을 작성하였기에 기존 파일을 제거해야함.)
+                print("파일 복호화 완료")
+
+else:
+    print("잘못 입력했다")
