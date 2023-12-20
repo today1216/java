@@ -1,6 +1,13 @@
 {
+    "java.addExports": [
+        "javax.swing",
+        "java.awt",
+        "javax.crypto"
+    ],
     "java.project.referencedLibraries": [
         "lib/**/*.jar",
         "agp-5.1.2.jar"
-    ]
+    ],
+    "java.compile.nullAnalysis.mode": "automatic"
+    
 }
